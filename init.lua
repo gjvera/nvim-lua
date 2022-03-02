@@ -1,0 +1,5 @@
+vim.cmd("colorscheme synthwave")
+require('editor')
+require('plugins')
+require('keymaps')
+require('lsp')
