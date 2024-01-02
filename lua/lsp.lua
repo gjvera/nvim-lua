@@ -1,5 +1,9 @@
 require('lsp/servers/tailwind')
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.java_language_server.setup{
+    cmd = {'/Users/gabriel.vera/dev/java-language-server/dist/lang_server_mac.sh'},
+}
+
 
 local cmp = require 'cmp'
 cmp.setup {
