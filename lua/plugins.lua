@@ -7,24 +7,42 @@
            vim.cmd.colorscheme "synthwave"
          end,
      },
+     {
+         'windwp/nvim-autopairs',
+         event = "InsertEnter",
+         opts = {}
+     },
      "tpope/vim-surround",
      "tpope/vim-commentary",
-     "jiangmiao/auto-pairs",
      { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
      "neovim/nvim-lspconfig",
      "HiPhish/rainbow-delimiters.nvim",
-     "hrsh7th/nvim-cmp",
      {
-         "hrsh7th/cmp-nvim-lsp",
-         lazy = false,
-         config = function()
-             require'cmp'.setup {
-               sources = {
-                 { name = 'nvim_lsp' }
-               }
-             }
-         end
+         "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
+            "saadparwaiz1/cmp_luasnip",
+            "L3MON4D3/LuaSnip",
+        },
+        config = function()
+            local cmp = require("cmp")
+            cmp.setup({
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-j>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                }),
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp" },
+                    { name = "nvim_lua" }
+                }),
+            })
+        end
      },
+     "hrsh7th/cmp-nvim-lsp",
      "saadparwaiz1/cmp_luasnip",
      "L3MON4D3/LuaSnip",
      "folke/tokyonight.nvim",

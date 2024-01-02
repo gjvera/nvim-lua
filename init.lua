@@ -1,4 +1,4 @@
- require("editor")
+require("editor")
  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
  if not vim.loop.fs_stat(lazypath) then
    vim.fn.system({
@@ -14,3 +14,4 @@
  require("lazy").setup(require("plugins"), opts)
  vim.g.mapleader = ","
  require("lsp")
+ require("keymaps")
